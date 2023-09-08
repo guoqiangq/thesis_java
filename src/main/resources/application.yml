@@ -1,0 +1,38 @@
+# 服务端口号，默认80
+server:
+  port: 8866
+  tomcat:
+    uri-encoding: UTF-8
+###文件上传
+file:
+  staticAccessPath: /upload/**    #文件访问路径
+  uploadFolder:  D://uploadFiles/  #文件保存路径
+  upload:
+    nama:  http://localhost:8866
+spring:
+  # 服务名称
+  application:
+    name: springboot-test
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+    multipart:
+      max-file-size : 10MB
+      max-request-size : 100MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/new_read?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true
+    username: root
+    password:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      idle-timeout: 500000
+      max-lifetime: 540000
+      connection-timeout: 60000
+  web:
+    resources:
+      static-locations: classpath:/static/,file:${file.uploadFolder}
