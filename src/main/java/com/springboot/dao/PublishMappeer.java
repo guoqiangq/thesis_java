@@ -179,7 +179,7 @@ public class PublishMappeer {
         try {
             String sql = "select * from publish_details where  is_like = ?and user_id = ?";//SQL查询语句
             List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,new Object[]{"1",param.get("user_id")});
-            System.out.println(list);
+
             return list;
         }
         catch (Exception e){

@@ -16,7 +16,7 @@ public class BrowseController {
     @RequestMapping(value = "/addBrowse",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> addBrowse(@RequestParam Map<String,Object> param){
-        System.out.println(param);
+//        System.out.println(param);
         Map<String,Object> obj= browse_service.addBrowse(param);
 
         return obj;

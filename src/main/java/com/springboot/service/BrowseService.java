@@ -46,7 +46,7 @@ public class BrowseService {
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         List<Map<String,Object>> listMaps = browse_mappeer.getBrowseList(param);
-        System.out.println(listMaps);
+
         if ( listMaps == null || listMaps.isEmpty()){
             obj.put("code",1001);
             obj.put("message","数据未找到!");

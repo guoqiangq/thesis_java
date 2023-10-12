@@ -25,7 +25,7 @@ public class PublishController {
     @RequestMapping(value = "/addPublish",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> addPublish(@RequestParam Map<String,Object> param){
-        System.out.println("新增文宝:"+param);
+//        System.out.println("新增文宝:"+param);
         Map<String,Object> obj= publishService.addPublish(param);
         return obj;
     }
@@ -48,14 +48,9 @@ public class PublishController {
 
 
         if (param.get("user_id")!=""&&param.get("user_id")!=null){
-//            if (param.get("user_id") == data_obj.get("user_id")){
-//                System.out.println("添加浏览记录失败:"+map);
-//                return obj;
-//            }
             mapobj.put("user_id",param.get("user_id"));
             mapobj.put("essay_id",param.get("id"));
             Map<String,Object> browse_obj= browse_service.addBrowse(mapobj);
-            System.out.println("添加浏览记录:"+browse_obj);
         }
 
 

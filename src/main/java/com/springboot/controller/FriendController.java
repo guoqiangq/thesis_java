@@ -32,7 +32,7 @@ public class FriendController {
     @RequestMapping(value = "/getListFriend",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> getListFriend(@RequestParam Map<String,Object> param){
-        System.out.println(param);
+//        System.out.println(param);
         Map<String,Object> obj= friend_service.getListFriend(param);
         return obj;
     }

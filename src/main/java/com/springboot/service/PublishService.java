@@ -30,7 +30,7 @@ public class PublishService {
     }
     public Map<String,Object> removePublish(@RequestParam Map<String,Object> param){
         int data = publishMappeer.removePublish(param);
-        System.out.println("remove:"+data);
+
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         obj.put("data",data);
@@ -127,20 +127,20 @@ public class PublishService {
         Object id = 0;
         if (data_details==null){
             int data = publishMappeer.addPublishDetails(param);
-            System.out.println("add_data:"+data);
+
            Map<String,Object> details= publishMappeer.getPublishDetails(param);
             id = details.get("id");
         }else{
             id = data_details.get("id");
         }
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(sdf.format(System.currentTimeMillis()));
+
         Map<String,Object> item = new HashMap<String,Object>();
         item.put("id",id);
         item.put("is_collect",param.get("is_collect"));
         item.put("collect_time",sdf.format(System.currentTimeMillis()));
         int item_data = publishMappeer.collectPublish(item);
-        System.out.println("data:"+item_data);
+
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         obj.put("data","成功!");
@@ -148,27 +148,27 @@ public class PublishService {
     }
     /*点赞*/
     public Map<String,Object> giveLikePublish(@RequestParam Map<String,Object> param){
-        System.out.println("service:"+param);
+
         Map<String,Object> data_details= publishMappeer.getPublishDetails(param);
         Object id = 0;
-        System.out.println(data_details);
+
         if (data_details==null){
             int data = publishMappeer.addPublishDetails(param);
-            System.out.println("add_data:"+data);
+
             Map<String,Object> details= publishMappeer.getPublishDetails(param);
-            System.out.println(details);
+
             id = details.get("id");
         }else{
             id = data_details.get("id");
         }
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(sdf.format(System.currentTimeMillis()));
+
         Map<String,Object> item = new HashMap<String,Object>();
         item.put("id",id);
         item.put("is_like",param.get("is_like"));
         item.put("like_time",sdf.format(System.currentTimeMillis()));
         int item_data = publishMappeer.giveLikePublish(item);
-        System.out.println("data:"+item_data);
+
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         obj.put("data","成功!");
@@ -223,7 +223,7 @@ public class PublishService {
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         List<Map<String,Object>> listMaps = publishMappeer.collectUserListPublish(param);
-        System.out.println(listMaps);
+
         if ( listMaps == null ){
             obj.put("code",1001);
             obj.put("message","数据未找到!");
@@ -262,7 +262,7 @@ public class PublishService {
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         List<Map<String,Object>> listMaps = publishMappeer.giveLikeUserListPublish(param);
-        System.out.println(listMaps);
+
         if ( listMaps == null ){
             obj.put("code",1001);
             obj.put("message","数据未找到!");

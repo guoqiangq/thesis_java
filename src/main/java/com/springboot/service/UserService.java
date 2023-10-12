@@ -1,8 +1,8 @@
 package com.springboot.service;
 
 import com.springboot.dao.UserMappeer;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,12 +15,19 @@ import java.util.Map;
 public class UserService {
     @Autowired
     private UserMappeer userMappeer;
+
     public Map<String,Object> getUsers(@RequestParam Map<String,Object> param){
         List<Map<String,Object>> list= userMappeer.getUsers(param);
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("code",0);
         obj.put("data",list);
         return obj;
+    }
+    public User selectUserById(@RequestParam String userid){
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("id",userid);
+        Map<String,Object> data= userMappeer.getUserId(param);
+        return (User) data;
     }
     public Map<String,Object> addUser(@RequestParam Map<String,Object> param){
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -39,6 +46,7 @@ public class UserService {
         if (data==null){
             obj.put("code",1001);
             obj.put("message","登录账号/密码错误!");
+            return obj;
         }
 
         if("-1".equals(data.get("status")+"")){
